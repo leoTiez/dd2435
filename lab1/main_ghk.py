@@ -19,7 +19,7 @@ def main():
     cl_concen_out = 5
 
     # Use given values
-    print('Volage for given Values')
+    print('Voltage for given Values')
     print(ghk_voltage(
         k_conduct=k_conduct,
         na_conduct=na_conduct,
@@ -139,7 +139,7 @@ def main():
 
     plt.plot(voltage_values, current_values)
     plt.ylabel('Current I')
-    plt.xlabel('Volatge V')
+    plt.xlabel('Voltage V')
     plt.grid()
     plt.show()
 
