@@ -12,6 +12,15 @@ def single_state_diff(
         diff_equi_a=0.14,
         save_plots=True
 ):
+    """
+    Implements the behaviro if a single cell is not in equilibrium
+    :param number_of_cells: Number of cells
+    :param time_step: Margin of the time step
+    :param number_timesteps: Number of time steps
+    :param diff_equi_a: The deviation from equilibrium for the single cell for the concentration of species a
+    :param save_plots: Flag to determine whether to save or to plot the figures
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
     deviation_a = np.zeros(number_of_cells)
     deviation_b = np.zeros(number_of_cells)
@@ -60,6 +69,16 @@ def random_state(
         rand_upper_bound=0.1,
         save_plots=True
 ):
+    """
+    Sets all cells to a random initial state
+    :param number_of_cells: Number of cells
+    :param time_step: Margin of the time step
+    :param number_timesteps: Number of time steps
+    :param rand_upper_bound: Upper bound of the random values for the species
+            that are assigned to the cells
+    :param save_plots: Flag to determine whether to save or to plot the figures
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
 
     deviation_a = np.random.rand(number_of_cells) * rand_upper_bound
@@ -110,6 +129,18 @@ def diffusion_coeff_change(
         diff_range_step=0.5,
         save_plots=True
 ):
+    """
+    Diffusion coefficients are gradually changed to determine impact on the system
+    :param number_of_cells: Number of cells
+    :param time_step: Margin of the time step
+    :param number_timesteps: Number of the time steps
+    :param rand_upper_bound: Upper bound of the random initial values
+    :param diff_a_range_upper_bound: Upper bound of the diffusion coefficients for species a
+    :param diff_b_range_upper_bound: Upper bound of the diffusion coefficients for species b
+    :param diff_range_step: Step size between the diffusion coefficients
+    :param save_plots: Flag to determine whether to save or to plot figures
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
 
     diff_a_range = np.arange(0, diff_a_range_upper_bound, diff_range_step)
@@ -164,6 +195,18 @@ def change_interact_b(
         interact_range_step=-0.1,
         save_plots=True
 ):
+    """
+    Change influence of the concentration b
+    :param number_of_cells: Number of cells
+    :param time_step: Marging of the time step
+    :param number_timesteps: Number of time steps
+    :param rand_upper_bound: Upper bound for random initial states
+    :param interact_b_start: Start value of the interaction coefficients of b
+    :param interact_b_end: End value of the interaction coefficients of b
+    :param interact_range_step: Step size of the interaction coefficients of b
+    :param save_plots: Flag to determine whether to save or to plot figures
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
     interact_b_range = np.arange(interact_b_start, interact_b_end, interact_range_step)
 
@@ -218,6 +261,18 @@ def change_interact_a(
         interact_range_step=0.1,
         save_plots=True
 ):
+    """
+    Change influence of the concentration b
+    :param number_of_cells: Number of cells
+    :param time_step: Margin of time step
+    :param number_timesteps: Number of time steps
+    :param rand_upper_bound: Upper bound of random initial values
+    :param interact_a_start: Start value of the interaction coefficients of a
+    :param interact_a_end: End value of the interaction coefficients of a
+    :param interact_range_step: Step size of the interaction coefficients of a
+    :param save_plots: Flag to determine whether to save or to plot figures
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
 
     interact_a_range = np.arange(interact_a_start, interact_a_end, interact_range_step)
@@ -263,6 +318,7 @@ def change_interact_a(
 
 
 def phase_portrait(
+        rand_upper_bound=0.1,
         interact_a_start=0,
         interact_a_end=2,
         interact_b_start=0,
@@ -271,6 +327,18 @@ def phase_portrait(
         trials=3,
         save_plots=True
 ):
+    """
+    Plots the phase portrait of the diffusion reaction system
+    :param rand_upper_bound: Upper bound of random initial values
+    :param interact_a_start: Start value of the interaction coefficients of a
+    :param interact_a_end: End value of the interaction coefficients of a
+    :param interact_b_start: Start value of the interaction coefficients of b
+    :param interact_b_end: End value of the interaction coefficients of b
+    :param interact_range_step: Step size of the interaction coefficients
+    :param trials: Number of trials since initial state is random
+    :param save_plots: Flag to determine whether to save or to plot figures
+    :return: None
+    """
 
     interact_a_range = np.arange(interact_a_start, interact_a_end, interact_range_step)
     interact_b_range = np.arange(interact_b_start, interact_b_end, interact_range_step)
@@ -281,8 +349,8 @@ def phase_portrait(
     phase_plane_vecs_b = []
     plt.clf()
     for color in list(mcolors.BASE_COLORS)[:trials]:
-        deviation_a = np.random.rand(1)*0.01
-        deviation_b = np.random.rand(1)*0.01
+        deviation_a = np.random.rand(1)*rand_upper_bound
+        deviation_b = np.random.rand(1)*rand_upper_bound
         for interact_a in interact_a_range:
             for interact_b in interact_b_range:
                 _, differential_a = react_diff(
@@ -317,5 +385,5 @@ if __name__ == '__main__':
     diffusion_coeff_change()
     change_interact_b()
     change_interact_a()
-    phase_portrait(save_plots=False)
+    phase_portrait()
 
