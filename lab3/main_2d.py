@@ -11,6 +11,15 @@ def random_state(
         rand_upper_bound=0.1,
         snap_shot_rate=100
 ):
+    """
+    Two dimensional reaction diffusion system that starts with a random initial state
+    :param shape: Shape of the two dim plain
+    :param time_step: Margin of the time steps
+    :param number_timesteps: Number of time steps
+    :param rand_upper_bound: Upper bound for random initial values
+    :param snap_shot_rate: Rate that determines how frequently the system state is plotted
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
 
     deviation_a = np.random.rand(shape[0], shape[1]) * rand_upper_bound
@@ -51,6 +60,17 @@ def single_high_a_state(
         snap_shot_rate=100,
         initial_value=0.14
 ):
+    """
+    Two dimensional reaction diffusion system that starts with single cells with initial high values
+    for species a
+    :param shape: Shape of the two dim plain
+    :param time_step: Margin of the time steps
+    :param number_timesteps: Number of time steps
+    :param num_changed_states: Number of states that are changed
+    :param snap_shot_rate: Rate that determines how frequently the system state is plotted
+    :param initial_value: Inital value for species a
+    :return: None
+    """
     time_array = np.arange(0, number_timesteps * time_step, time_step)
 
     deviation_a = np.zeros(shape)
