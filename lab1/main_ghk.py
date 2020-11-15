@@ -140,6 +140,7 @@ def main():
     plt.plot(voltage_values, current_values)
     plt.ylabel('Current I')
     plt.xlabel('Voltage V')
+    plt.title('I-V relationship of the membrane')
     plt.grid()
     plt.show()
 

@@ -55,6 +55,13 @@ def single_state_diff(
     fig.colorbar(pc_a, ax=ax1)
     pc_b = ax2.pcolor(np.asarray(history_b), vmin=b_min, vmax=b_max)
     fig.colorbar(pc_b, ax=ax2)
+    fig.suptitle('One-dimensional reaction-diffusion system')
+    ax1.set_ylabel('Time')
+    ax1.set_title('Species A')
+    ax2.set_ylabel('Time')
+    ax2.set_title('Species B')
+    ax2.set_xlabel('Dimension')
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 
     if save_plots:
         plt.savefig('img/1d-single_state_diff.png')
@@ -112,6 +119,13 @@ def random_state(
     fig.colorbar(pc_a, ax=ax1)
     pc_b = ax2.pcolor(np.asarray(history_b), vmin=b_min, vmax=b_max)
     fig.colorbar(pc_b, ax=ax2)
+    fig.suptitle('One-dimensional reaction-diffusion system')
+    ax1.set_ylabel('Time')
+    ax1.set_title('Species A')
+    ax2.set_ylabel('Time')
+    ax2.set_title('Species B')
+    ax2.set_xlabel('Dimension')
+    fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 
     if save_plots:
         plt.savefig('img/1d-random_state.png')
@@ -178,6 +192,13 @@ def diffusion_coeff_change(
             fig.colorbar(pc_a, ax=ax1)
             pc_b = ax2.pcolor(np.asarray(history_b), vmin=b_min, vmax=b_max)
             fig.colorbar(pc_b, ax=ax2)
+            fig.suptitle('One-dimensional reaction-diffusion system')
+            ax1.set_ylabel('Time')
+            ax1.set_title('Species A')
+            ax2.set_ylabel('Time')
+            ax2.set_title('Species B')
+            ax2.set_xlabel('Dimension')
+            fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 
             if save_plots:
                 plt.savefig('img/1d-diffusion_coeff_change-{0}-{1}.png'.format(diff_a, diff_b))
@@ -244,6 +265,13 @@ def change_interact_b(
         fig.colorbar(pc_a, ax=ax1)
         pc_b = ax2.pcolor(np.asarray(history_b), vmin=b_min, vmax=b_max)
         fig.colorbar(pc_b, ax=ax2)
+        fig.suptitle('One-dimensional reaction-diffusion system')
+        ax1.set_ylabel('Time')
+        ax1.set_title('Species A')
+        ax2.set_ylabel('Time')
+        ax2.set_title('Species B')
+        ax2.set_xlabel('Dimension')
+        fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 
         if save_plots:
             plt.savefig('img/1d-change_interact_b-{0}.png'.format(interact_b))
@@ -310,6 +338,13 @@ def change_interact_a(
         fig.colorbar(pc_a, ax=ax1)
         pc_b = ax2.pcolor(np.asarray(history_b), vmin=b_min, vmax=b_max)
         fig.colorbar(pc_b, ax=ax2)
+        fig.suptitle('One-dimensional reaction-diffusion system')
+        ax1.set_ylabel('Time')
+        ax1.set_title('Species A')
+        ax2.set_ylabel('Time')
+        ax2.set_title('Species B')
+        ax2.set_xlabel('Dimension')
+        fig.tight_layout(rect=[0, 0.03, 1, 0.95])
 
         if save_plots:
             plt.savefig('img/1d-change_interact_a-{0}.png'.format(interact_a))
@@ -345,10 +380,10 @@ def phase_portrait(
 
     A, B = np.meshgrid(interact_a_range, interact_b_range)
 
-    phase_plane_vecs_a = []
-    phase_plane_vecs_b = []
     plt.clf()
-    for color in list(mcolors.BASE_COLORS)[:trials]:
+    for num, color in enumerate(list(mcolors.BASE_COLORS)[:trials]):
+        phase_plane_vecs_a = []
+        phase_plane_vecs_b = []
         deviation_a = np.random.rand(1)*rand_upper_bound
         deviation_b = np.random.rand(1)*rand_upper_bound
         for interact_a in interact_a_range:
@@ -370,9 +405,12 @@ def phase_portrait(
                 phase_plane_vecs_b.append(differential_b)
 
         plt.quiver(A, B, phase_plane_vecs_a, phase_plane_vecs_b, color=color,
-                   label='a: {0}, b: {1}'.format(deviation_a, deviation_b))
+                   label='Trial {:}: a: {:.2f}, b: {:.2f}'.format(num, deviation_a[0], deviation_b[0]))
 
     plt.legend(loc='upper right')
+    plt.title('Phase portrait over %s trials' % trials)
+    plt.xlabel('C1')
+    plt.ylabel('C2')
     if save_plots:
         plt.savefig('img/1d-phase_portrait.png')
     else:
@@ -380,10 +418,10 @@ def phase_portrait(
 
 
 if __name__ == '__main__':
-    single_state_diff()
-    random_state()
-    diffusion_coeff_change()
-    change_interact_b()
-    change_interact_a()
-    phase_portrait()
+    # single_state_diff(save_plots=False)
+    # random_state(save_plots=False)
+    # diffusion_coeff_change(save_plots=True)
+    # change_interact_b(save_plots=True)
+    # change_interact_a(save_plots=True)
+    phase_portrait(save_plots=False)
 

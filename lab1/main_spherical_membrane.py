@@ -133,9 +133,11 @@ def main():
         ),
         'k--', label='37% of the original value = tau')
     plt.legend(loc='upper right')
+    plt.title('Time course of V for a soma w/out changing permeabilities')
     plt.grid()
     plt.xlabel('Time t')
     plt.ylabel('Voltage V')
+    plt.tight_layout()
     plt.show()
 
     # Changing permeability conditions within specific time frames
@@ -222,9 +224,11 @@ def main():
     # Plot results
     plt.plot(time_values, voltage_values_changed_cond, 'b-', label='voltage')
     plt.legend(loc='upper right')
+    plt.title('Time course of V w/ changing permeabilities')
     plt.grid()
     plt.xlabel('Time t')
     plt.ylabel('Voltage V')
+    plt.tight_layout()
     plt.show()
 
     injected_current = 0.0
@@ -308,9 +312,11 @@ def main():
         ),
         'k--', label='37% of the original value = tau')
     plt.legend(loc='upper right')
+    plt.title('Time course of V for a dendritic spine w/out changing permeabilities')
     plt.grid()
     plt.xlabel('Time t')
     plt.ylabel('Voltage V')
+    plt.tight_layout()
     plt.show()
 
 

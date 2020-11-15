@@ -13,6 +13,9 @@ def main():
     for conc in concentrations:
         fluxes.append(flux(conc, 0))
 
+    plt.title('Concentration-activity profile')
+    plt.xlabel('Concentration')
+    plt.ylabel('Reaction rate j')
     plt.plot(concentrations, fluxes)
     plt.show()
 
@@ -23,6 +26,9 @@ def main():
             fluxes.append(flux(conc, mod_conc))
         plt.plot(concentrations, fluxes, label='%f' % mod_conc)
     plt.legend(loc='upper right')
+    plt.xlabel('Concentration')
+    plt.ylabel('Reaction rate j')
+    plt.title('Concentration-activity profile over different concentrations of FBP')
     plt.show()
 
 

@@ -39,7 +39,7 @@ def main():
     ax3.legend(loc='upper right')
 
     plt.xlabel('Voltage V')
-    plt.ylabel('m / h / tau')
+    plt.suptitle('m / h / tau of a sodium channel')
     plt.show()
 
     dt = 0.1e-3
@@ -69,6 +69,7 @@ def main():
                 label='Mean of Sodium Channel at %f' % voltage)
         ax.legend(loc='upper right')
 
+    plt.suptitle('Simulation of the Na-m particle dynamics')
     plt.show()
 
     fig, subplots = plt.subplots(num_of_plots, 1, sharex=True, sharey=True, figsize=(15, 10))
@@ -89,6 +90,7 @@ def main():
                 'r-',
                 label='Mean of Sodium Channel at %f' % voltage)
         ax.legend(loc='upper right')
+    plt.suptitle('Simulation of the Na channel dynamics')
     plt.show()
 
 
