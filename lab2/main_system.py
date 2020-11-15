@@ -38,7 +38,7 @@ def main():
     ode_simulation_influx = ode(concentrations_f6p_influx).set_integrator('vode', method='bdf', order=15) \
         .set_initial_value(initial_values)
 
-    time = 20
+    time = 2000
     f6p_conc = []
     fbp_conc = []
 
@@ -66,6 +66,9 @@ def main():
     plt.plot(time_range, f6p_conc_influx, 'm--', label='F6P concentration high influx')
     plt.plot(time_range, fbp_conc_influx, 'c--', label='FBP concentration high influx')
     plt.legend(loc='upper right')
+    plt.title('Concentration of F6P and FBP over time')
+    plt.xlabel('Time')
+    plt.ylabel('Concentration')
     plt.show()
 
 

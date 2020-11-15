@@ -44,6 +44,9 @@ def random_state(
         deviation_a = deviation_a_update
         deviation_b = deviation_b_update
 
+        plt.xlabel('X direction')
+        plt.ylabel('Y direction')
+        plt.title('Two dimensional reaction diffusion system w/ random start state')
         if num % snap_shot_rate == 0:
             plt.imshow(deviation_a)
             plt.pause(0.1)
@@ -101,6 +104,17 @@ def single_high_a_state(
         deviation_a = deviation_a_update
         deviation_b = deviation_b_update
 
+        plt.figure(1)
+        plt.xlabel('X direction')
+        plt.ylabel('Y direction')
+        plt.title('Two dimensional reaction diffusion system w/ \n'
+                  'single high value for species A. Plot species A')
+
+        plt.figure(2)
+        plt.xlabel('X direction')
+        plt.ylabel('Y direction')
+        plt.title('Two dimensional reaction diffusion system w/ \n'
+                  'single high value for species A. Plot species B')
         if num % snap_shot_rate == 0:
             plt.figure(1)
             plt.imshow(deviation_a)
@@ -116,9 +130,9 @@ def single_high_a_state(
 
 
 if __name__ == '__main__':
-    random_state(shape=(50, 50), number_timesteps=7000, snap_shot_rate=200, time_step=0.005)
-    random_state(shape=(50, 10), number_timesteps=5000, snap_shot_rate=1000)
-    single_high_a_state(number_timesteps=5000, snap_shot_rate=1000, num_changed_states=1)
+    # random_state(shape=(50, 50), number_timesteps=7000, snap_shot_rate=200, time_step=0.005)
+    # random_state(shape=(50, 10), number_timesteps=5000, snap_shot_rate=1000)
+    # single_high_a_state(number_timesteps=5000, snap_shot_rate=1000, num_changed_states=1)
     single_high_a_state(
         shape=(50, 50),
         number_timesteps=7000,
